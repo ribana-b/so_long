@@ -35,4 +35,4 @@ The goal is to collect every collectible to open the exit, which is initially bl
 
 ## Progress
 
-If you want to check my progress as a student in 42 Málaga check out my [main repository](https://github.com/SrRecursive/42Malaga)!
+If you want to check my progress as a student in 42 Málaga check out my [main repository](https://github.com/SrVariable/42Malaga)!
