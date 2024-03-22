@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:46:25 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/22 15:46:25 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/22 18:50:19 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bfl.h"
+#include "BFL.h"
 
 static void	ll_initialize(t_ll **linked_list)
 {

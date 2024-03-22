@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:47:21 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/22 15:47:21 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/22 18:51:16 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bfl.h"
+#include "BFL.h"
 
 char	*ft_strtrim(const char *str, const char *str2)
 {

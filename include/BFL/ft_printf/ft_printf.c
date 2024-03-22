@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:46:14 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/22 15:46:14 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/22 18:50:04 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bfl.h"
+#include "BFL.h"
 
 static void	ft_print_format(const char *str, va_list arg, t_print *info)
 {

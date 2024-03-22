@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:45:28 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/22 15:45:28 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/22 18:49:52 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bfl.h"
+#include "BFL.h"
 
 int	ft_putchar_fd(char character, int fd)
 {

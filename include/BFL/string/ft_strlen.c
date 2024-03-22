@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:47:13 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/22 15:47:13 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/22 18:51:09 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bfl.h"
+#include "BFL.h"
 
 size_t	ft_strlen(const char *str)
 {

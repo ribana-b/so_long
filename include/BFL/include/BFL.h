@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bfl.h                                              :+:      :+:    :+:   */
+/*   BFL.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 15:46:21 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/22 17:10:29 by ribana-b         ###   ########.com      */
+/*   Created: 2024/03/22 18:48:06 by ribana-b          #+#    #+# Malaga      */
+/*   Updated: 2024/03/22 18:50:15 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ enum e_exit_status
 	OK,
 	KO,
 	NO_ARGS,
-	RIP_MALLOC
+	INVALID_ARGC,
+	RIP_MALLOC,
+	EXIT_STATUS_LIMIT
 };
 
 enum e_bool

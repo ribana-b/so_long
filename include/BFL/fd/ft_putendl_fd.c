@@ -6,11 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:31:08 by ribana-b          #+#    #+#             */
-/*   Updated: 2024/02/14 12:48:59 by ribana-b         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:49:54 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bfl.h"
+#include "BFL.h"
 
 int	ft_putendl_fd(const char *str, int fd)
 {
