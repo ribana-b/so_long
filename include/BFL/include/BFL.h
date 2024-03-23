@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:48:06 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/22 18:50:15 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/23 00:30:49 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@
 
 /* ==========================================================================*/
 
-typedef enum e_bool			t_bool;
-typedef enum e_exit_status	t_exit_status;
-typedef enum e_fd			t_fd;
-typedef struct s_print		t_print;
-typedef struct s_ll			t_ll;
-typedef struct s_dll		t_dll;
+typedef enum e_bool		t_bool;
+typedef struct s_print	t_print;
+typedef struct s_ll		t_ll;
+typedef struct s_dll	t_dll;
 /* ==========================================================================*/
 
 /* <-- Enum Section --> */
@@ -58,8 +56,8 @@ enum e_exit_status
 	OK,
 	KO,
 	NO_ARGS,
-	INVALID_ARGC,
 	RIP_MALLOC,
+	INVALID_ARGC,
 	EXIT_STATUS_LIMIT
 };
 

@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/03/22 16:30:27 by ribana-b         ###   ########.com       #
+#    Updated: 2024/03/23 11:50:38 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,9 @@ DEBUG_DIR = src/debug/
 
 # <-- Files --> #
 SRC_FILES = main.c
-UTILS_FILES = 
+UTILS_FILES = parser.c \
+				ft_exit.c \
+				ft_file.c
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -93,7 +95,7 @@ OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
 # ========================================================================== #
 
 # <-- Project's Target --> #
-all: $(BIN_DIR) $(BIN_DIR)$(NAME)
+all: tags $(BIN_DIR) $(BIN_DIR)$(NAME)
 
 # <-- Program/Library Creation --> #
 ifdef WITH_DEBUG
@@ -134,15 +136,15 @@ $(OBJ_DIR)%.o: $(UTILS_DIR)%.c
 # <-- Objects Destruction --> #
 clean:
 	@$(RM) $(OBJ_DIR)
-	@make clean -s -C $(BFL_DIR)
 	@make clean -s -C $(MLX42_DIR)
+	@make clean -s -C $(BFL_DIR)
 	@echo "🗑️  🦔 $(T_YELLOW)$(BOLD)so_long Objects $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 
 # <-- Clean Execution + push_swap Destruction --> #
 fclean: clean
 	@$(RM) $(BIN_DIR) tags
-	@make fclean -s -C $(BFL_DIR)
 	@make fclean -s -C $(MLX42_DIR)
+	@make fclean -s -C $(BFL_DIR)
 	@echo "🗑️  🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 
 # <-- Fclean Execution + All Execution --> #
@@ -158,7 +160,23 @@ tags:
 	@ctags -F $(shell cat temp)
 	@rm temp
 
+test_invalid: all
+	./$(BIN_DIR)$(NAME) maps/invalid_directory.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_character.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_size.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_size_new_line_start.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_size_new_line_end.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_not_closed_up.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_not_closed_down.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_not_closed_left.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_not_closed_right.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_amount_collectible.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_amount_player.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_amount_player_2.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_amount_exit.ber;\
+	./$(BIN_DIR)$(NAME) maps/invalid_amount_exit_2.ber
+
 # <-- Targets Declaration --> #
-.PHONY = all clean debug fclean re tags
+.PHONY = all clean debug fclean re tags test_invalid
 
 # ========================================================================== #
