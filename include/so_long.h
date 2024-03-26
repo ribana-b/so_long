@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:28:01 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/23 12:46:55 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/26 21:49:54 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@
 # define RED "\033[0;31m"
 # define RESET "\033[0m"
 # define YELLOW "\033[0;33m"
-# define ERROR_LOG RED"[ERROR]"RESET
-# define INFO_LOG YELLOW"[LOG]"RESET
+# define ERROR_LOG RED"[ERROR] "RESET
+# define INFO_LOG YELLOW"[LOG] "RESET
 # define WALL '1'
 # define FLOOR '0'
 # define COLLECTIBLE 'C'
 # define EXIT 'E'
 # define PLAYER 'P'
+# define FILL '.'
 
 /* <-- Libraries Section --> */
 
@@ -121,6 +122,8 @@ struct s_info
 
 void	parse_line(t_info *info);
 void	fill_map(t_info *info);
+void	parse_map(t_info *info);
+void	parse_name(t_info *info);
 void	ft_exit(t_info *info, int status);
 void	ft_open(t_info *info);
 void	ft_close(t_info *info);

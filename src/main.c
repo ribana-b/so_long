@@ -6,41 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:55:43 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/23 13:01:01 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/26 21:50:26 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <assert.h>
-
-static void	validate_extension(t_info *info)
-{
-	char	**split;
-	char	*temp;
-	size_t	length;
-
-	split = ft_split(info->map_name, ' ');
-	if (!split)
-	{
-		ft_free(&split, 2);
-		ft_exit(info, RIP_MALLOC);
-	}
-	if (ft_splitlen(split) != 1)
-	{
-		ft_free(&split, 2);
-		ft_exit(info, INVALID_ARGS);
-	}
-	temp = ft_strrchr(split[0], '/');
-	if (temp)
-		++temp;
-	length = ft_strlen(temp);
-	if (length < 5 || ft_strncmp(temp + length - 4, ".ber", 4) != 0)
-	{
-		ft_free(&split, 2);
-		ft_exit(info, INVALID_MAP_EXTENSION);
-	}
-	ft_free(&split, 2);
-}
 
 static void	so_long(t_info *info)
 {
@@ -85,9 +55,10 @@ int	main(int argc, char **argv)
 		return (INVALID_ARGC);
 	}
 	initialise_info(&info, argv[1]);
-	validate_extension(&info);
+	parse_name(&info);
 	parse_line(&info);
 	fill_map(&info);
+	parse_map(&info);
 	so_long(&info);
 	ft_free(&info.map.map, 2);
 	return (OK);

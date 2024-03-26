@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/03/23 11:50:38 by ribana-b         ###   ########.com       #
+#    Updated: 2024/03/26 21:50:36 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,10 @@ DEBUG_DIR = src/debug/
 
 # <-- Files --> #
 SRC_FILES = main.c
-UTILS_FILES = parser.c \
+UTILS_FILES = parse_line.c \
+				parse_map.c \
+				parse_name.c \
+				fill_map.c \
 				ft_exit.c \
 				ft_file.c
 

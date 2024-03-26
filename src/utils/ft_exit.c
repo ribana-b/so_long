@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/23 12:47:06 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/26 20:51:10 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	handle_error_2(t_info *info, int status)
 
 static void	handle_error(t_info *info, int status)
 {
-	ft_fprintf(STDERR, "%s ", ERROR_LOG);
+	ft_fprintf(STDERR, ERROR_LOG);
 	if (status == KO)
 		ft_fprintf(STDERR, "Running the program\n");
 	else if (status == RIP_MALLOC)

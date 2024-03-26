@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:04:10 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/23 12:46:46 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/26 21:45:53 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ static void	has_valid_character(t_info *info)
 	index = 0;
 	while (info->parser.line[index])
 	{
-		if (info->parser.line[index] == PLAYER)
-			++info->parser.amount[T_PLAYER];
-		else if (info->parser.line[index] == EXIT)
+		if (info->parser.line[index] == EXIT)
 			++info->parser.amount[T_EXIT];
 		else if (info->parser.line[index] == COLLECTIBLE)
 			++info->parser.amount[T_COLLECTIBLE];
+		else if (info->parser.line[index] == PLAYER)
+		{
+			info->player.x = info->map.height;
+			info->player.y = index;
+			++info->parser.amount[T_PLAYER];
+		}
 		else if (info->parser.line[index] != WALL
 			&& info->parser.line[index] != FLOOR
 			&& info->parser.line[index] != '\n')
@@ -82,32 +86,5 @@ void	parse_line(t_info *info)
 		ft_exit(info, INVALID_EXIT_AMOUNT);
 	else if (info->parser.amount[T_COLLECTIBLE] < 1)
 		ft_exit(info, INVALID_COLLECTIBLE_AMOUNT);
-	ft_close(info);
-}
-
-void	fill_map(t_info *info)
-{
-	size_t	index;
-
-	ft_open(info);
-	info->parser.line = get_next_line(info->parser.fd);
-	if (!info->parser.line)
-		ft_exit(info, RIP_MALLOC);
-	info->map.map = malloc((info->map.height + 1) * sizeof(*info->map.map));
-	info->map.map[info->map.height] = NULL;
-	index = -1;
-	while (info->parser.line)
-	{
-		info->map.map[++index] = ft_strdup(info->parser.line);
-		if (!info->map.map[index])
-			ft_exit(info, RIP_MALLOC);
-		ft_free(&info->parser.line, 1);
-		info->parser.line = get_next_line(info->parser.fd);
-	}
-	index = -1;
-	while (info->map.map[info->map.height - 1][++index]
-		&& info->map.map[info->map.height - 1][index + 1])
-		if (info->map.map[info->map.height - 1][index] != WALL)
-			ft_exit(info, INVALID_NOT_CLOSED);
 	ft_close(info);
 }
