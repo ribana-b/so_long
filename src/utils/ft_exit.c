@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/26 20:51:10 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/26 23:00:01 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	handle_error(t_info *info, int status)
 		ft_fprintf(STDERR, "Invalid map\n");
 	else if (status == INVALID_SIZE)
 		ft_fprintf(STDERR, "Invalid map size, it must be rectangular\n");
-	else if (status == INVALID_MAP_EXTENSION)
-		ft_fprintf(STDERR, "Invalid map extension, it must be .ber\n");
+	else if (status == INVALID_MAP_NAME)
+		ft_fprintf(STDERR, "Invalid map name, it must be .ber\n");
 	else if (status == INVALID_MAP_FILE)
 		ft_fprintf(STDERR, "Invalid map, it must be a .ber file\n");
 	else if (status == INVALID_CHARACTER)
