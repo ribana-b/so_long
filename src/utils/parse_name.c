@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:46:54 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/26 21:50:16 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/26 22:11:17 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,21 @@ static int	handle_slash(t_info *info, char ***split)
 	if (length < 5 || ft_strncmp(trimmed_name + length - 4, ".ber", 4) != 0)
 	{
 		ft_free(split, 2);
-		ft_exit(info, INVALID_MAP_EXTENSION);
+		ft_exit(info, INVALID_MAP_NAME);
 	}
 	return (OK);
+}
+
+static void	handle_no_slash(t_info *info, char ***split)
+{
+	size_t	length;
+
+	length = ft_strlen((*split)[0]);
+	if (length < 5 || ft_strncmp((*split)[0] + length - 4, ".ber", 4) != 0)
+	{
+		ft_free(split, 2);
+		ft_exit(info, INVALID_MAP_NAME);
+	}
 }
 
 void	parse_name(t_info *info)
@@ -50,10 +62,6 @@ void	parse_name(t_info *info)
 		ft_free(&split, 2);
 		return ;
 	}
-	if (ft_strncmp(split[0] + ft_strlen(split[0]) - 4, ".ber", 4) != 0)
-	{
-		ft_free(&split, 2);
-		ft_exit(info, INVALID_MAP_EXTENSION);
-	}
+	handle_no_slash(info, &split);
 	ft_free(&split, 2);
 }

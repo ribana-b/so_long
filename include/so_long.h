@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:28:01 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/26 21:49:54 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/26 22:08:27 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ enum e_exit_status_2
 	INVALID_ARGS = EXIT_STATUS_LIMIT,
 	INVALID_FD,
 	INVALID_MAP,
-	INVALID_MAP_EXTENSION,
+	INVALID_MAP_NAME,
 	INVALID_MAP_FILE,
 	INVALID_SIZE,
 	INVALID_CHARACTER,
