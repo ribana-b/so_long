@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/26 23:00:01 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/28 03:45:25 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ static void	handle_error_2(t_info *info, int status)
 	else if (status == INVALID_EXIT_AMOUNT)
 		ft_fprintf(STDERR, "Invalid map, it must have 1 exit, found %d\n",
 			info->parser.amount[T_EXIT]);
+	else if (status == INVALID_MAP_UNREACHABLE)
+		ft_fprintf(STDERR, "Invalid map, the player is not able to collect\
+ every collectible and exit successfully\n");
 }
 
 static void	handle_error(t_info *info, int status)

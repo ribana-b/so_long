@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:42:55 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/26 21:43:20 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/28 03:46:25 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	parse_map(t_info *info)
 	if (nothing_missing(map) != OK)
 	{
 		ft_free(&map, 2);
-		ft_exit(info, INVALID_MAP);
+		ft_exit(info, INVALID_MAP_UNREACHABLE);
 	}
 	ft_free(&map, 2);
 }
