@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 15:45:28 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/24 14:41:20 by ribana-b         ###   ########.com      */
+/*   Created: 2024/03/31 22:55:10 by ribana-b          #+#    #+# Malaga      */
+/*   Updated: 2024/03/31 23:19:41 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BFL.h"
 
-int	ft_putchar_fd(char character, int fd)
+void	*ft_realloc(void *ptr, size_t current_size, size_t new_size,
+			size_t element_size)
 {
-	int	bytes_written;
+	char	*temp;
 
-	if (fd < 0)
-		return (-1);
-	bytes_written = write(fd, &character, 1);
-	if (bytes_written < 0)
-		return (-1);
-	return (bytes_written);
+	if (!new_size || !element_size)
+		return (NULL);
+	temp = malloc((new_size + 1) * element_size);
+	if (!temp)
+		return (ft_free(&ptr, 1));
+	ft_memcpy(temp, ptr, current_size * element_size);
+	ft_free(&ptr, 1);
+	ptr = temp;
+	return (ptr);
 }
