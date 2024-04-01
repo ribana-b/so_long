@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/01 00:11:09 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/01 14:38:53 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,24 @@ static void	handle_error(t_info *info, int status)
 	handle_error_2(info, status);
 }
 
+static void	free_resources(t_info *info)
+{
+	t_color	color;
+
+	color = RED - 1;
+	ft_free(&info->map.map, 2);
+	ft_free(&info->parser.line, 1);
+	ft_free(&info->collectible, 1);
+	while (++color < COLOR)
+		ft_free(&info->path.floor[color], 1);
+	ft_free(&info->path.wall, 1);
+	ft_free(&info->path.player, 1);
+	ft_free(&info->path.collectible, 1);
+	ft_free(&info->path.exit_map[OPENED], 1);
+	ft_free(&info->path.exit_map[CLOSED], 1);
+	ft_free(&info->path.relative_path, 1);
+}
+
 void	ft_exit(t_info *info, int status)
 {
 	char	*temp;
@@ -66,9 +84,7 @@ void	ft_exit(t_info *info, int status)
 	}
 	if (status != OK)
 		handle_error(info, status);
-	ft_free(&info->map.map, 2);
-	ft_free(&info->parser.line, 1);
-	ft_free(&info->collectible, 1);
+	free_resources(info);
 	ft_close(info);
 	exit(status);
 }
