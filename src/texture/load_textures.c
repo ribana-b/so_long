@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 05:21:21 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/28 07:21:13 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/01 03:09:18 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void	load_collectible(t_info *info)
 void	load_exit_map(t_info *info)
 {
 	info->sprite.texture = mlx_load_png(PATH"exit_map.png");
-	info->sprite.exit_map = mlx_texture_to_image(info->mlx,
+	info->sprite.exit_map[OPENED] = mlx_texture_to_image(info->mlx,
+			info->sprite.texture);
+	mlx_delete_texture(info->sprite.texture);
+	info->sprite.texture = mlx_load_png(PATH"floor.png");
+	info->sprite.exit_map[CLOSED] = mlx_texture_to_image(info->mlx,
 			info->sprite.texture);
 	mlx_delete_texture(info->sprite.texture);
 }

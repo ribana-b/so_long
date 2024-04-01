@@ -6,11 +6,40 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:04:10 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/28 04:21:50 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/01 04:48:58 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	save_character(t_info *info, size_t index, char character)
+{
+	if (character == COLLECTIBLE)
+	{
+		info->collectible = ft_realloc(info->collectible,
+				info->parser.amount[T_COLLECTIBLE],
+				info->parser.amount[T_COLLECTIBLE] + 1,
+				sizeof(*info->collectible));
+		info->collectible[info->parser.amount[T_COLLECTIBLE]].x = \
+info->map.height;
+		info->collectible[info->parser.amount[T_COLLECTIBLE]].y = index;
+		info->collectible[info->parser.amount[T_COLLECTIBLE]].is_collected = \
+FALSE;
+		++info->parser.amount[T_COLLECTIBLE];
+	}
+	else if (character == EXIT)
+	{
+		info->exit_map.x = info->map.height;
+		info->exit_map.y = index;
+		++info->parser.amount[T_EXIT];
+	}
+	else if (character == PLAYER)
+	{
+		info->player.x = info->map.height;
+		info->player.y = index;
+		++info->parser.amount[T_PLAYER];
+	}
+}
 
 static void	has_valid_character(t_info *info)
 {
@@ -20,15 +49,11 @@ static void	has_valid_character(t_info *info)
 	while (info->parser.line[index])
 	{
 		if (info->parser.line[index] == EXIT)
-			++info->parser.amount[T_EXIT];
+			save_character(info, index, EXIT);
 		else if (info->parser.line[index] == COLLECTIBLE)
-			++info->parser.amount[T_COLLECTIBLE];
+			save_character(info, index, COLLECTIBLE);
 		else if (info->parser.line[index] == PLAYER)
-		{
-			info->player.x = info->map.height;
-			info->player.y = index;
-			++info->parser.amount[T_PLAYER];
-		}
+			save_character(info, index, PLAYER);
 		else if (info->parser.line[index] != WALL
 			&& info->parser.line[index] != FLOOR
 			&& info->parser.line[index] != '\n')
@@ -46,7 +71,7 @@ static void	is_valid_line(t_info *info)
 	static int		length = -1;
 	int				index;
 
-	info->map.width = ft_strlen(info->parser.line);
+	info->map.width = ft_strlen(info->parser.line) - 1;
 	if (info->map.width)
 		is_empty = FALSE;
 	if (!is_empty && !info->map.width)
@@ -61,7 +86,7 @@ static void	is_valid_line(t_info *info)
 				ft_exit(info, INVALID_NOT_CLOSED);
 	}
 	if (info->parser.line[0] != WALL
-		|| info->parser.line[info->map.width - 2] != WALL)
+		|| info->parser.line[info->map.width - 1] != WALL)
 		ft_exit(info, INVALID_NOT_CLOSED);
 	length = info->map.width;
 }

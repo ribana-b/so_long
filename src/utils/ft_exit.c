@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/28 03:45:25 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/01 00:11:09 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ void	ft_exit(t_info *info, int status)
 		ft_free(&temp, 1);
 		temp = get_next_line(info->parser.fd);
 	}
-	handle_error(info, status);
+	if (status != OK)
+		handle_error(info, status);
 	ft_free(&info->map.map, 2);
 	ft_free(&info->parser.line, 1);
+	ft_free(&info->collectible, 1);
 	ft_close(info);
 	exit(status);
 }

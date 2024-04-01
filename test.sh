@@ -42,6 +42,10 @@ printf "\n$so_long $map_path/invalid_extension_2.be\n"
 $so_long $map_path/invalid_extension_2.be
 printf "\n$so_long $map_path/.ber\n"
 $so_long $map_path/.ber
+printf "\n$so_long $map_path/map.ber\n"
+$so_long $map_path/map.ber
+printf "\n$so_long $map_path/map_2.ber\n"
+$so_long $map_path/map_2.ber
 
 
 # Checking leaks

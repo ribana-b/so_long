@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/03/28 08:57:55 by ribana-b         ###   ########.com       #
+#    Updated: 2024/04/01 04:50:26 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,8 @@ RM = rm -rf
 # <-- Include Library --> #
 INCLUDE = -I ./$(INCLUDE_DIR) -I $(BFL_DIR)include -I $(MLX42_DIR)/include/MLX42
 
-# <-- Link BFL --> #
-LIBRARY = -L./$(BFL_DIR) -lbfl -L./$(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
+# <-- Linkers --> #
+LIBRARY = -L./$(BFL_DIR) -lBFL -L./$(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
 
 # <-- Directories --> #
 INCLUDE_DIR = include/
@@ -87,12 +87,14 @@ UTILS_FILES = fill_map.c \
 				manage_file.c \
 				ft_random.c \
 				movement.c \
-				handler.c
+				handler.c \
+				game_logic.c
 PARSER_FILES = parse_line.c \
 				parse_map.c \
 				parse_name.c
 TEXTURE_FILES = load_textures.c \
-				draw_textures.c
+				draw_textures.c \
+				reload_textures.c
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))

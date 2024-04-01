@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 08:57:30 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/28 08:58:10 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/01 01:51:27 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_bool	can_move_up(t_info *info)
 			(info->player.y) * RESIZE, (info->player.x) * RESIZE);
 		++info->step_counter;
 		ft_fprintf(STDOUT, INFO_LOG"Counter: %u\n", info->step_counter);
-		update_map(info, info->player.x - 1, info->player.y);
 		return (TRUE);
 	}
 	return (FALSE);
@@ -40,7 +39,6 @@ t_bool	can_move_down(t_info *info)
 			(info->player.y) * RESIZE, (info->player.x) * RESIZE);
 		++info->step_counter;
 		ft_fprintf(STDOUT, INFO_LOG"Counter: %u\n", info->step_counter);
-		update_map(info, info->player.x + 1, info->player.y);
 		return (TRUE);
 	}
 	return (FALSE);
@@ -57,7 +55,6 @@ t_bool	can_move_left(t_info *info)
 			(info->player.y) * RESIZE, (info->player.x) * RESIZE);
 		++info->step_counter;
 		ft_fprintf(STDOUT, INFO_LOG"Counter: %u\n", info->step_counter);
-		update_map(info, info->player.x, info->player.y - 1);
 		return (TRUE);
 	}
 	return (FALSE);
@@ -74,7 +71,6 @@ t_bool	can_move_right(t_info *info)
 			(info->player.y) * RESIZE, (info->player.x) * RESIZE);
 		++info->step_counter;
 		ft_fprintf(STDOUT, INFO_LOG"Counter: %u\n", info->step_counter);
-		update_map(info, info->player.x, info->player.y + 1);
 		return (TRUE);
 	}
 	return (FALSE);
