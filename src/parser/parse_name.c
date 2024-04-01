@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:46:54 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/26 22:11:17 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/03/28 03:37:32 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	handle_no_slash(t_info *info, char ***split)
 	size_t	length;
 
 	length = ft_strlen((*split)[0]);
-	if (length < 5 || ft_strncmp((*split)[0] + length - 4, ".ber", 4) != 0)
+	if (ft_strncmp((*split)[0] + length - 4, ".ber", 4) != 0)
 	{
 		ft_free(split, 2);
 		ft_exit(info, INVALID_MAP_NAME);

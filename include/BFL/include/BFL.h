@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 18:48:06 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/03/23 00:30:49 by ribana-b         ###   ########.com      */
+/*   Created: 2024/03/22 15:46:21 by ribana-b          #+#    #+# Malaga      */
+/*   Updated: 2024/03/31 23:19:14 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 /* <-- Defines Section --> */
 
-/* ==========================================================================*/
-
 # define BUFFER_SIZE 1024
-/* ==========================================================================*/
 
 /* <-- Libraries Section --> */
 
@@ -34,37 +31,46 @@
 
 /* ==========================================================================*/
 
-typedef enum e_bool		t_bool;
-typedef struct s_print	t_print;
-typedef struct s_ll		t_ll;
-typedef struct s_dll	t_dll;
+typedef enum e_bool			t_bool;
+typedef struct s_print		t_print;
+typedef struct s_ll			t_ll;
+typedef struct s_dll		t_dll;
 /* ==========================================================================*/
 
 /* <-- Enum Section --> */
 
 /* ==========================================================================*/
 
-enum e_fd
-{
-	STDIN,
-	STDOUT,
-	STDERR
-};
-
-enum e_exit_status
-{
-	OK,
-	KO,
-	NO_ARGS,
-	RIP_MALLOC,
-	INVALID_ARGC,
-	EXIT_STATUS_LIMIT
-};
-
+/**
+ * @brief Custom bool
+ *
+ */
 enum e_bool
 {
-	FALSE,
-	TRUE
+	FALSE,	/**< 0 */
+	TRUE,	/**< 1 */
+};
+
+/**
+ * @brief Custom fd
+ */
+enum e_fd
+{
+	STDIN,	/**< 0 */
+	STDOUT,	/**< 1 */
+	STDERR,	/**< 2 */
+};
+
+/**
+ * @brief Custom exit status
+ */
+enum e_exit_status
+{
+	OK,					/**< 0 */
+	KO,					/**< 1 */
+	RIP_MALLOC,			/**< 2 */
+	INVALID_ARGC,		/**< 3 */
+	EXIT_STATUS_LIMIT,	/**< Amount of enums */
 };
 /* ==========================================================================*/
 
@@ -74,19 +80,14 @@ enum e_bool
 /* ft_fprintf */
 
 /**
- * @struct t_print
- * @brief Typedef for struct s_print which is a structure with information
- * needed for printf functions.
- *
- * @var int::index Index of the string being read.
- * @var int::bytes Total amount of bytes read.
- * @var int::success Amount of bytes read successfully.
+ * @struct s_print
+ * @brief Structure with information needed for printf functions.
  */
 struct s_print
 {
-	int	index;
-	int	bytes;
-	int	success;
+	int		index; /**< Index for the string being read. */
+	int		bytes; /**< Total amount of bytes read. */
+	int		success; /**< Amount of bytes read successfully. */
 };
 /* ==========================================================================*/
 
@@ -94,17 +95,13 @@ struct s_print
 /* Linked List */
 
 /**
- * @struct t_ll
- * @brief Typedef for struct s_ll which is a structure representing
- * a node in a linked list.
- *
- * @var t_ll::content Pointer to the content of the current node.
- * @var t_ll::next Pointer to the next node in the linked list.
+ * @struct s_ll
+ * @brief Structure representing a node in a linked list.
  */
 struct s_ll
 {
-	void	*content;
-	t_ll	*next;
+	void	*content; /**< Pointer to the content of the current node. */
+	t_ll	*next; /**< Pointer to the next node. */
 };
 /* ==========================================================================*/
 
@@ -112,19 +109,14 @@ struct s_ll
 /* Doubly Linked List */
 
 /**
- * @struct t_dll
- * @brief Typedef for struct s_dll which is a structure representing
- * a node in a double linked list.
- *
- * @var t_dll::content Pointer to the content of the current node.
- * @var t_dll::previous Pointer to the previous node in the linked list.
- * @var t_dll::next Pointer to the next node of the linked list.
+ * @struct s_dll
+ * @brief Structure representing * a node in a double linked list.
  */
 struct s_dll
 {
-	void	*content;
-	t_dll	*previous;
-	t_dll	*next;
+	void	*content; /**< Pointer to the content of the current node. */
+	t_dll	*previous; /**< Pointer to the previous node. */
+	t_dll	*next; /**< Pointer to the next node */
 };
 /* ==========================================================================*/
 
@@ -732,6 +724,26 @@ int					ft_memcmp(const void *str, const void *str2, size_t bytes);
  * must be NULL terminated.
  */
 void				*ft_free(void *ptr_address, size_t asterisk_amount);
+
+/**
+ * @brief Reallocate a pointer with a specified size.
+ *
+ * @details This function reallocates a pointer with a new specified size.
+ *
+ * @param ptr Pointer to be reallocated.
+ * @param current_size Current used size of ptr.
+ * @param new_size New size of ptr.
+ * @param element_size Size of the elements of ptr.
+ *
+ * @return - ptr if reallocation is successful.
+ * @return - NULL if reallocation fails or either new_size or element_size
+ * is 0.
+ *
+ * @note ptr must be initialised to NULL or with allocated memory.
+ * @note The caller is responsible for freeing the memory allocated.
+ */
+void				*ft_realloc(void *ptr, size_t current_size, size_t new_size,
+						size_t element_size);
 /* ==========================================================================*/
 
 /* ==========================================================================*/

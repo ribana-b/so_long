@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/03/26 21:50:36 by ribana-b         ###   ########.com       #
+#    Updated: 2024/04/01 04:50:26 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,14 +64,16 @@ RM = rm -rf
 # <-- Include Library --> #
 INCLUDE = -I ./$(INCLUDE_DIR) -I $(BFL_DIR)include -I $(MLX42_DIR)/include/MLX42
 
-# <-- Link BFL --> #
-LIBRARY = -L./$(BFL_DIR) -lbfl -L./$(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
+# <-- Linkers --> #
+LIBRARY = -L./$(BFL_DIR) -lBFL -L./$(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
 
 # <-- Directories --> #
 INCLUDE_DIR = include/
 BFL_DIR = $(INCLUDE_DIR)BFL/
 MLX42_DIR = $(INCLUDE_DIR)MLX42/
 SRC_DIR = src/
+PARSER_DIR = $(SRC_DIR)parser/
+TEXTURE_DIR = $(SRC_DIR)texture/
 UTILS_DIR = $(SRC_DIR)utils/
 OBJ_DIR = obj/
 BIN_DIR = bin/
@@ -80,20 +82,31 @@ DEBUG_DIR = src/debug/
 
 # <-- Files --> #
 SRC_FILES = main.c
-UTILS_FILES = parse_line.c \
-				parse_map.c \
-				parse_name.c \
-				fill_map.c \
+UTILS_FILES = fill_map.c \
 				ft_exit.c \
-				ft_file.c
+				manage_file.c \
+				ft_random.c \
+				movement.c \
+				handler.c \
+				game_logic.c
+PARSER_FILES = parse_line.c \
+				parse_map.c \
+				parse_name.c
+TEXTURE_FILES = load_textures.c \
+				draw_textures.c \
+				reload_textures.c
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_FILES))
+PARSER = $(addprefix $(PARSER_DIR), $(PARSER_FILES))
+TEXTURE = $(addprefix $(TEXTURE_DIR), $(TEXTURE_FILES))
 
 # <-- Objects --> #
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC)) \
 		$(patsubst $(UTILS_DIR)%.c, $(OBJ_DIR)%.o, $(UTILS)) \
+		$(patsubst $(PARSER_DIR)%.c, $(OBJ_DIR)%.o, $(PARSER)) \
+		$(patsubst $(TEXTURE_DIR)%.c, $(OBJ_DIR)%.o, $(TEXTURE)) \
 
 # ========================================================================== #
 
@@ -132,6 +145,16 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
 
 $(OBJ_DIR)%.o: $(UTILS_DIR)%.c
+	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(PARSER_DIR)%.c
+	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
+
+$(OBJ_DIR)%.o: $(TEXTURE_DIR)%.c
 	@echo "🔨 🦔 $(T_WHITE)$(BOLD)Compiling $<...$(RESET)"
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@echo "🧩 🦔 $(T_BLUE)$(BOLD)$@ $(RESET)$(T_GREEN)created!$(RESET)"
