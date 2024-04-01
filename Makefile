@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/04/01 14:42:31 by ribana-b         ###   ########.com       #
+#    Updated: 2024/04/01 17:41:35 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,14 +116,14 @@ all: tags $(BIN_DIR) $(BIN_DIR)$(NAME)
 
 # <-- Program/Library Creation --> #
 ifdef WITH_DEBUG
-$(BIN_DIR)$(NAME): $(OBJ_DIR) $(OBJ)
+$(BIN_DIR)$(NAME): $(MLX42_DIR) $(OBJ_DIR) $(OBJ)
 	@make -s debug -C $(BFL_DIR)
 	@make -s -C $(MLX42_DIR)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)so_long Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
 	@$(CC) -o $@ $(OBJ) $(INCLUDE) $(LIBRARY)
 	@echo "✅ 🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_GREEN)created successfully!$(RESET)"
 else
-$(BIN_DIR)$(NAME): $(OBJ_DIR) $(OBJ)
+$(BIN_DIR)$(NAME): $(MLX42_DIR) $(OBJ_DIR) $(OBJ)
 	@make -s -C $(BFL_DIR)
 	@make -s -C $(MLX42_DIR)
 	@echo "✅ 🦔 $(T_YELLOW)$(BOLD)so_long Objects $(RESET)$(T_GREEN)created successfully!$(RESET)"
@@ -138,6 +138,10 @@ $(BIN_DIR):
 # <-- Objects Directory Creation --> #
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
+
+$(MLX42_DIR):
+	@git clone https://github.com/codam-coding-college/MLX42.git $(MLX42_DIR) > /dev/null 2>&1
+	@cd $(MLX42_DIR) && git checkout da6e420 > /dev/null 2>&1
 
 # <-- Objects Creation --> #
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -163,14 +167,18 @@ $(OBJ_DIR)%.o: $(TEXTURE_DIR)%.c
 # <-- Objects Destruction --> #
 clean:
 	@$(RM) $(OBJ_DIR)
-	@make clean -s -C $(MLX42_DIR)
+	@if [ -d $(MLX42_DIR) ]; then \
+		make clean -s -C $(MLX42_DIR); \
+	fi
 	@make clean -s -C $(BFL_DIR)
 	@echo "🗑️  🦔 $(T_YELLOW)$(BOLD)so_long Objects $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 
-# <-- Clean Execution + push_swap Destruction --> #
+# <-- Clean Execution + so_long Destruction --> #
 fclean: clean
 	@$(RM) $(BIN_DIR) tags
-	@make fclean -s -C $(MLX42_DIR)
+	@if [ -d $(MLX42_DIR) ]; then \
+		make fclean -s -C $(MLX42_DIR); \
+	fi
 	@make fclean -s -C $(BFL_DIR)
 	@echo "🗑️  🦔 $(T_MAGENTA)$(BOLD)$(NAME) $(RESET)$(T_RED)destroyed successfully!$(RESET)"
 
@@ -187,23 +195,7 @@ tags:
 	@ctags -F $(shell cat temp)
 	@rm temp
 
-test_invalid: all
-	./$(BIN_DIR)$(NAME) maps/invalid_directory.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_character.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_size.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_size_new_line_start.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_size_new_line_end.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_not_closed_up.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_not_closed_down.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_not_closed_left.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_not_closed_right.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_amount_collectible.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_amount_player.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_amount_player_2.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_amount_exit.ber;\
-	./$(BIN_DIR)$(NAME) maps/invalid_amount_exit_2.ber
-
 # <-- Targets Declaration --> #
-.PHONY = all clean debug fclean re tags test_invalid
+.PHONY = all clean debug fclean re tags
 
 # ========================================================================== #
