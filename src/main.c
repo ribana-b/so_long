@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:55:43 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/01 04:37:21 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/01 14:35:19 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	initialise_info(t_info *info, char *map_name)
 	info->random_number = 25;
 	info->refresh_rate = 60;
 	info->force_redraw = FALSE;
+	info->path = (t_path){0};
+	get_sprites_path(info, map_name);
 }
 
 int	main(int argc, char **argv)

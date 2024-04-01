@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:28:01 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/01 04:50:49 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/01 14:36:01 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define EXIT 'E'
 # define PLAYER 'P'
 # define FILL '.'
-# define PATH "./sprites/"
+# define PATH "sprites/"
 
 /* <-- Libraries Section --> */
 
@@ -49,6 +49,7 @@ typedef struct s_exit_map		t_exit_map;
 typedef struct s_info			t_info;
 typedef struct s_parser			t_parser;
 typedef struct s_sprite			t_sprite;
+typedef struct s_path			t_path;
 
 enum e_exit_status_2
 {
@@ -101,6 +102,16 @@ struct s_sprite
 	mlx_image_t		*collectible;
 	mlx_image_t		*exit_map[STATUS];
 	mlx_texture_t	*texture;
+};
+
+struct s_path
+{
+	char	*floor[COLOR];
+	char	*wall;
+	char	*player;
+	char	*collectible;
+	char	*exit_map[STATUS];
+	char	*relative_path;
 };
 
 struct s_map
@@ -156,6 +167,7 @@ struct s_info
 	unsigned long	random_number;
 	size_t			refresh_rate;
 	t_bool			force_redraw;
+	t_path			path;
 };
 
 /* Function Section */
@@ -185,5 +197,6 @@ t_bool			can_move_right(t_info *info);
 unsigned long	ft_random(t_info *info);
 void			game_logic(void *data);
 void			reload_textures(t_info *info);
+void			get_sprites_path(t_info *info, char *map_name);
 
 #endif // SO_LONG_H
