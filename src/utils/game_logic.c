@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:46:56 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/02 01:35:19 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/02 14:30:14 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	is_finished(t_info *info)
 		&& info->exit_map.is_opened)
 	{
 		handle_close_window(info->mlx);
-		ft_fprintf(STDOUT, INFO_LOG"Player exited succesfully\n");
+		ft_fprintf(STDOUT, INFO_LOG"Player exited successfully\n");
 	}
 }
 
