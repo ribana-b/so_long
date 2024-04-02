@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/04/01 17:41:35 by ribana-b         ###   ########.com       #
+#    Updated: 2024/04/02 16:07:07 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,10 +92,11 @@ UTILS_FILES = fill_map.c \
 PARSER_FILES = parse_line.c \
 				parse_map.c \
 				parse_name.c
-TEXTURE_FILES = load_textures.c \
+TEXTURE_FILES = get_texture_path.c \
+				open_textures.c \
+				load_textures.c \
 				draw_textures.c \
-				reload_textures.c \
-				get_sprites_path.c
+				reload_textures.c
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))

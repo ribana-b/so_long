@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/01 14:38:53 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/02 16:08:19 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	handle_error_2(t_info *info, int status)
 	else if (status == INVALID_MAP_UNREACHABLE)
 		ft_fprintf(STDERR, "Invalid map, the player is not able to collect\
  every collectible and exit successfully\n");
+	else if (status == INVALID_TEXTURE)
+		ft_fprintf(STDERR, "Invalid texture, I can't open it\n");
 }
 
 static void	handle_error(t_info *info, int status)

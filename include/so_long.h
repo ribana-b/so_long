@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:28:01 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/01 14:36:01 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/02 18:04:14 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #  define SEED 42
 # endif // SEED
 
+# define MIN_REFRESH_RATE 15
 # define RESIZE 64
 # define ERROR_LOG "\033[0;31m[ERROR] \033[0m"
 # define INFO_LOG "\033[0;33m[INFO] \033[0m"
@@ -42,6 +43,8 @@
 
 typedef enum e_color			t_color;
 typedef enum e_type				t_type;
+typedef enum e_direction		t_direction;
+typedef enum e_status			t_status;
 typedef struct s_player			t_player;
 typedef struct s_map			t_map;
 typedef struct s_collectible	t_collectible;
@@ -55,6 +58,7 @@ enum e_exit_status_2
 {
 	INVALID_ARGS = EXIT_STATUS_LIMIT,
 	INVALID_FD,
+	INVALID_TEXTURE,
 	INVALID_MAP,
 	INVALID_MAP_NAME,
 	INVALID_MAP_FILE,
@@ -89,16 +93,25 @@ enum e_color
 
 enum e_status
 {
-	OPENED,
 	CLOSED,
+	OPENED,
 	STATUS
+};
+
+enum e_direction
+{
+	UP,
+	LEFT,
+	DOWN,
+	RIGHT,
+	DIRECTION
 };
 
 struct s_sprite
 {
 	mlx_image_t		*floor[COLOR];
 	mlx_image_t		*wall;
-	mlx_image_t		*player;
+	mlx_image_t		*player[DIRECTION];
 	mlx_image_t		*collectible;
 	mlx_image_t		*exit_map[STATUS];
 	mlx_texture_t	*texture;
@@ -108,7 +121,7 @@ struct s_path
 {
 	char	*floor[COLOR];
 	char	*wall;
-	char	*player;
+	char	*player[4];
 	char	*collectible;
 	char	*exit_map[STATUS];
 	char	*relative_path;
@@ -133,9 +146,10 @@ struct s_parser
 
 struct s_player
 {
-	int	x;
-	int	y;
-	int	collected;
+	int			x;
+	int			y;
+	int			collected;
+	t_direction	current_direction;
 };
 
 struct s_collectible
@@ -196,7 +210,12 @@ t_bool			can_move_left(t_info *info);
 t_bool			can_move_right(t_info *info);
 unsigned long	ft_random(t_info *info);
 void			game_logic(void *data);
+void			reload_player(t_info *info);
+void			reload_map(t_info *info);
+void			reload_collectible(t_info *info);
+void			reload_exit_map(t_info *info);
 void			reload_textures(t_info *info);
-void			get_sprites_path(t_info *info, char *map_name);
+void			get_texture_path(t_info *info, char *map_name);
+void			open_textures(t_info *info);
 
 #endif // SO_LONG_H
