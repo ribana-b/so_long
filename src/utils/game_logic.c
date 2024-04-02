@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:46:56 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/01 04:53:41 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/02 01:35:19 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ static void	is_finished(t_info *info)
 void	game_logic(void *data)
 {
 	t_info			*info;
-	static t_bool	is_draw;
+	static t_bool	is_draw = TRUE;
 
 	info = data;
-	is_draw = TRUE;
 	if (info->player.collected == info->parser.amount[T_COLLECTIBLE] && is_draw)
 	{
 		draw_textures(info);
