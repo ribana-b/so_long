@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 02:46:56 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/01 04:53:41 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/02 14:30:14 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@ static void	is_finished(t_info *info)
 		&& info->exit_map.is_opened)
 	{
 		handle_close_window(info->mlx);
-		ft_fprintf(STDOUT, INFO_LOG"Player exited succesfully\n");
+		ft_fprintf(STDOUT, INFO_LOG"Player exited successfully\n");
 	}
 }
 
 void	game_logic(void *data)
 {
 	t_info			*info;
-	static t_bool	is_draw;
+	static t_bool	is_draw = TRUE;
 
 	info = data;
-	is_draw = TRUE;
 	if (info->player.collected == info->parser.amount[T_COLLECTIBLE] && is_draw)
 	{
 		draw_textures(info);
