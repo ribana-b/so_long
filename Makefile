@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/04/02 16:07:07 by ribana-b         ###   ########.com       #
+#    Updated: 2024/04/03 01:11:33 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -192,11 +192,14 @@ debug:
 
 # <-- Tags --> #
 tags:
-	@$(shell find . -type f \( -name "*c" -o -name "*.h" \) > temp)
+	@$(shell find . -path ./bonus_part -prune -o -print -type f \( -name "*c" -o -name "*.h" \) > temp)
 	@ctags -F $(shell cat temp)
 	@rm temp
 
+bonus:
+	@make -s -C bonus_part
+
 # <-- Targets Declaration --> #
-.PHONY = all clean debug fclean re tags
+.PHONY = all bonus clean debug fclean re tags
 
 # ========================================================================== #
