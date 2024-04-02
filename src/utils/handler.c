@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:09:05 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/01 04:32:22 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 00:57:34 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	handle_collection(t_info *info)
 					info->sprite.floor[ft_random(info) % COLOR],
 					info->collectible[index].y * RESIZE,
 					info->collectible[index].x * RESIZE);
+				ft_fprintf(STDOUT, INFO_LOG"Collected %d/%d\n",
+					info->player.collected, info->parser.amount[T_COLLECTIBLE]);
 				break ;
 			}
 		}
@@ -51,25 +53,13 @@ static void	handle_collection(t_info *info)
 static void	handle_movement(t_info *info, const char *message)
 {
 	if (ft_strncmp(message, "up", 2) == 0 && can_move_up(info))
-	{
-		ft_fprintf(STDOUT, INFO_LOG"Move %s\n", message);
 		--info->player.x;
-	}
 	else if (ft_strncmp(message, "down", 4) == 0 && can_move_down(info))
-	{
-		ft_fprintf(STDOUT, INFO_LOG"Move %s\n", message);
 		++info->player.x;
-	}
 	else if (ft_strncmp(message, "left", 4) == 0 && can_move_left(info))
-	{
-		ft_fprintf(STDOUT, INFO_LOG"Move %s\n", message);
 		--info->player.y;
-	}
 	else if (ft_strncmp(message, "right", 4) == 0 && can_move_right(info))
-	{
-		ft_fprintf(STDOUT, INFO_LOG"Move %s\n", message);
 		++info->player.y;
-	}
 	if (info->map.map[info->player.x][info->player.y] == COLLECTIBLE)
 		handle_collection(info);
 }
