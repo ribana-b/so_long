@@ -2,16 +2,18 @@
 
 ## Description
 
-So_long is a function that creates a 2D game.
+So_long is a program that creates a 2D game. It is made from _scratch_ with the
+help of [MLX42](https://github.com/codam-coding-college/MLX42/tree/da6e42050b299e61aa2d96e5f08ac178c000514c).
 
 It must have:
 
 - A player.
 - An exit.
-- At least a collectible.
+- At least one collectible.
 - Walls.
 
-The goal is to collect every collectible to open the exit, which is initially blocked.
+The goal is to gather every collectible to open the exit, which is initially
+closed.
 
 ### Bonus
 
@@ -21,16 +23,17 @@ The goal is to collect every collectible to open the exit, which is initially bl
 
 ## Allowed Functions
 
-- [open()](https://linux.die.net/man/3/open)
-- [close()](https://linux.die.net/man/3/close)
+- [open()](https://www.man7.org/linux/man-pages/man2/open.2.html)
+- [close()](https://www.man7.org/linux/man-pages/man2/close.2.html)
 - [write()](https://man7.org/linux/man-pages/man2/write.2.html)
-- [read()](https://linux.die.net/man/3/read)
+- [read()](https://www.man7.org/linux/man-pages/man2/read.2.html)
 - [malloc()](https://www.man7.org/linux/man-pages/man3/malloc.3.html)
-- [free()](https://linux.die.net/man/3/free)
-- [perror()](https://linux.die.net/man/3/perror)
-- [exit()](https://linux.die.net/man/3/exit)
+- [free()](https://www.man7.org/linux/man-pages/man3/free.3p.html)
+- [perror()](https://www.man7.org/linux/man-pages/man3/perror.3.html)
+- [sterrror()](https://www.man7.org/linux/man-pages/man3/strerror.3.html)
+- [exit()](https://www.man7.org/linux/man-pages/man3/exit.3.html)
 - Any function from [math library](https://man7.org/linux/man-pages/man0/math.h.0p.html).
-- Any function from [MLX42](https://github.com/codam-coding-college/MLX42).
+- Any function from [MLX42](https://github.com/codam-coding-college/MLX42/tree/da6e42050b299e61aa2d96e5f08ac178c000514c).
 - Any function I code from scratch.
 
 ## Progress
