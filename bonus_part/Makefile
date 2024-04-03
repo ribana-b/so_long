@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/04/03 01:11:57 by ribana-b         ###   ########.com       #
+#    Updated: 2024/04/03 05:22:23 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -195,7 +195,7 @@ debug:
 tags:
 	@$(shell find .. -path ../src -prune -o -print -type f \( -name "*c" -o -name "*.h" \) > temp)
 	@ctags -F $(shell cat temp)
-	@rm temp
+	@$(RM) temp
 
 # <-- Targets Declaration --> #
 .PHONY = all clean debug fclean re tags

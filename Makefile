@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/04/03 01:11:33 by ribana-b         ###   ########.com       #
+#    Updated: 2024/04/03 02:59:24 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,13 +62,13 @@ endif
 RM = rm -rf
 
 # <-- Include Library --> #
-INCLUDE = -I ./$(INCLUDE_DIR) -I $(BFL_DIR)include -I $(MLX42_DIR)/include/MLX42
+INCLUDE = -I ./$(INCLUDE_DIR) -I $(BFL_DIR)include -I $(MLX42_DIR)include/MLX42
 
 # <-- Linkers --> #
 LIBRARY = -L./$(BFL_DIR) -lBFL -L./$(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
 
 # <-- Directories --> #
-INCLUDE_DIR = include/
+INCLUDE_DIR = ./include/
 BFL_DIR = $(INCLUDE_DIR)BFL/
 MLX42_DIR = $(INCLUDE_DIR)MLX42/
 SRC_DIR = src/
@@ -194,7 +194,7 @@ debug:
 tags:
 	@$(shell find . -path ./bonus_part -prune -o -print -type f \( -name "*c" -o -name "*.h" \) > temp)
 	@ctags -F $(shell cat temp)
-	@rm temp
+	@$(RM) temp
 
 bonus:
 	@make -s -C bonus_part
