@@ -6,7 +6,11 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
+<<<<<<< HEAD
 /*   Updated: 2024/04/03 05:23:09 by ribana-b         ###   ########.com      */
+=======
+/*   Updated: 2024/04/03 05:05:39 by ribana-b         ###   ########.com      */
+>>>>>>> 256406011385e46fe7301e9553a14f0ca40e2031
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +70,11 @@ static void	free_resources(t_info *info)
 	while (++color < COLOR)
 		ft_free(&info->path.floor[color], 1);
 	direction = UP - 1;
+<<<<<<< HEAD
 	while (++direction < DIRECTION)
+=======
+	while (++direction < COLOR)
+>>>>>>> 256406011385e46fe7301e9553a14f0ca40e2031
 		ft_free(&info->path.player[direction], 1);
 	status = CLOSED - 1;
 	while (++status < STATUS)
