@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:50:18 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/02 23:36:45 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 05:36:26 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ void	open_textures(t_info *info)
 		ft_exit(info, INVALID_TEXTURE);
 	close(temp_fd);
 	temp_fd = open(info->path.wall, O_RDONLY);
+	if (temp_fd < 0)
+		ft_exit(info, INVALID_TEXTURE);
+	temp_fd = open(info->path.enemy, O_RDONLY);
 	if (temp_fd < 0)
 		ft_exit(info, INVALID_TEXTURE);
 	close(temp_fd);

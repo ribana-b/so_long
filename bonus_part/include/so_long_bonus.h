@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:28:01 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 01:34:27 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 05:22:11 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ struct s_sprite
 	mlx_image_t		*collectible;
 	mlx_image_t		*exit_map[STATUS];
 	mlx_image_t		*enemy;
+	mlx_image_t		*step_counter_text;
 	mlx_texture_t	*texture;
 };
 
@@ -138,6 +139,7 @@ struct s_map
 	int			height;
 	mlx_image_t	*sprite[COLOR];
 	mlx_image_t	*wall_sprite;
+	t_bool		has_enemy;
 };
 
 struct s_parser
@@ -224,5 +226,6 @@ void			reload_exit_map(t_info *info);
 void			reload_textures(t_info *info);
 void			get_texture_path(t_info *info, char *map_name);
 void			open_textures(t_info *info);
+void			print_step_counter(t_info *info);
 
 #endif // SO_LONG_BONUS_H

@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 05:53:26 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 00:06:20 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 05:21:30 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	draw_map(t_info *info)
 			if (info->map.map[index[1]][index[0]] == WALL)
 				mlx_image_to_window(info->mlx, info->sprite.wall,
 					index[0] * RESIZE, index[1] * RESIZE);
-			if (info->map.map[index[1]][index[0]] == ENEMY)
+			if (info->map.has_enemy
+				&& info->map.map[index[1]][index[0]] == ENEMY)
 				mlx_image_to_window(info->mlx, info->sprite.enemy,
 					index[0] * RESIZE, index[1] * RESIZE);
 		}
@@ -50,6 +51,8 @@ static void	draw_collectibles(t_info *info)
 
 	index = -1;
 	reload_collectible(info);
+	if (info->player.collected == info->parser.amount[T_COLLECTIBLE])
+		return ;
 	while (++index < info->parser.amount[T_COLLECTIBLE])
 	{
 		if (!info->collectible[index].is_collected)
@@ -99,4 +102,6 @@ void	draw_textures(void *data)
 	}
 	if (++buffer >= 600)
 		buffer = 1;
+	if (info->step_counter)
+		print_step_counter(info);
 }

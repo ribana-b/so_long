@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 16:55:43 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 02:45:13 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 05:32:55 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	load_textures(t_info *info)
 	load_wall(info);
 	load_floor(info);
 	load_player(info);
-	load_enemy(info);
+	if (info->map.has_enemy)
+		load_enemy(info);
 	load_collectible(info);
 	load_exit_map(info);
 }

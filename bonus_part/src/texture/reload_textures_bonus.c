@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 04:49:45 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 00:06:06 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 05:26:16 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	reload_player(t_info *info)
 
 void	reload_map(t_info *info)
 {
-	t_color	color;
+	t_color		color;
 
 	color = RED - 1;
 	while (++color < COLOR)
@@ -32,8 +32,11 @@ void	reload_map(t_info *info)
 	load_floor(info);
 	mlx_delete_image(info->mlx, info->sprite.wall);
 	load_wall(info);
-	mlx_delete_image(info->mlx, info->sprite.enemy);
-	load_enemy(info);
+	if (info->map.has_enemy)
+	{
+		mlx_delete_image(info->mlx, info->sprite.enemy);
+		load_enemy(info);
+	}
 }
 
 void	reload_collectible(t_info *info)

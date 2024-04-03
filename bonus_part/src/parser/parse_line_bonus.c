@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:04:10 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 00:37:31 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 04:09:15 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	has_valid_character(t_info *info)
 		else if (info->parser.line[index] == PLAYER)
 			save_character(info, index, PLAYER);
 		else if (info->parser.line[index] == ENEMY)
-			save_character(info, index, ENEMY);
+			info->map.has_enemy = TRUE;
 		else if (info->parser.line[index] != WALL
 			&& info->parser.line[index] != FLOOR
 			&& info->parser.line[index] != '\n')
