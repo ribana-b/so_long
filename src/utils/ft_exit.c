@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/02 16:08:19 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 05:05:39 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,24 @@ static void	handle_error(t_info *info, int status)
 
 static void	free_resources(t_info *info)
 {
-	t_color	color;
+	t_color		color;
+	t_direction	direction;
+	t_status	status;
 
 	color = RED - 1;
+	while (++color < COLOR)
+		ft_free(&info->path.floor[color], 1);
+	direction = UP - 1;
+	while (++direction < COLOR)
+		ft_free(&info->path.player[direction], 1);
+	status = CLOSED - 1;
+	while (++status < STATUS)
+		ft_free(&info->path.exit_map[status], 1);
 	ft_free(&info->map.map, 2);
 	ft_free(&info->parser.line, 1);
 	ft_free(&info->collectible, 1);
-	while (++color < COLOR)
-		ft_free(&info->path.floor[color], 1);
 	ft_free(&info->path.wall, 1);
-	ft_free(&info->path.player, 1);
 	ft_free(&info->path.collectible, 1);
-	ft_free(&info->path.exit_map[OPENED], 1);
-	ft_free(&info->path.exit_map[CLOSED], 1);
 	ft_free(&info->path.relative_path, 1);
 }
 
