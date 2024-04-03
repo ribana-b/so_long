@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:42:55 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 00:06:59 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 06:37:39 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,23 @@ static void	flood_fill(t_info *info, char ***map, int x, int y)
 	}
 }
 
-static void	parse_last_line(t_info *info)
+static void	last_parse(t_info *info)
 {
 	int	index;
+	int	temp_fd;
 
 	index = -1;
 	while (info->map.map[info->map.height - 1][++index]
 		&& info->map.map[info->map.height - 1][index + 1])
 		if (info->map.map[info->map.height - 1][index] != WALL)
 			ft_exit(info, INVALID_NOT_CLOSED);
+	if (info->map.has_enemy)
+	{
+		temp_fd = open(info->path.enemy, O_RDONLY);
+		if (temp_fd < 0)
+			ft_exit(info, INVALID_TEXTURE);
+		close(temp_fd);
+	}
 }
 
 void	parse_map(t_info *info)
@@ -60,7 +68,7 @@ void	parse_map(t_info *info)
 	char	**map;
 	int		index;
 
-	parse_last_line(info);
+	last_parse(info);
 	map = malloc((info->map.height + 1) * sizeof(*info->map.map));
 	if (!map)
 		ft_exit(info, RIP_MALLOC);
