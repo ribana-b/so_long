@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handler.c                                          :+:      :+:    :+:   */
+/*   handler_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:09:05 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 00:57:34 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 02:58:38 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	handle_close_window(void *data)
 {
@@ -60,7 +60,12 @@ static void	handle_movement(t_info *info, const char *message)
 		--info->player.y;
 	else if (ft_strncmp(message, "right", 4) == 0 && can_move_right(info))
 		++info->player.y;
-	if (info->map.map[info->player.x][info->player.y] == COLLECTIBLE)
+	if (info->map.map[info->player.x][info->player.y] == ENEMY)
+	{
+		ft_fprintf(STDOUT, INFO_LOG"Player died :c\n");
+		handle_close_window(info->mlx);
+	}
+	else if (info->map.map[info->player.x][info->player.y] == COLLECTIBLE)
 		handle_collection(info);
 }
 

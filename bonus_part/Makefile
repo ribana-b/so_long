@@ -6,7 +6,7 @@
 #    By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 15:52:12 by ribana-b          #+#    #+# Malaga       #
-#    Updated: 2024/04/03 02:59:24 by ribana-b         ###   ########.com       #
+#    Updated: 2024/04/03 05:22:23 by ribana-b         ###   ########.com       #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,16 +62,16 @@ endif
 RM = rm -rf
 
 # <-- Include Library --> #
-INCLUDE = -I ./$(INCLUDE_DIR) -I $(BFL_DIR)include -I $(MLX42_DIR)include/MLX42
+INCLUDE = -I ./$(INCLUDE_DIR) -I $(BFL_DIR)include -I $(MLX42_DIR)/include/MLX42
 
 # <-- Linkers --> #
 LIBRARY = -L./$(BFL_DIR) -lBFL -L./$(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
 
 # <-- Directories --> #
 INCLUDE_DIR = ./include/
-BFL_DIR = $(INCLUDE_DIR)BFL/
-MLX42_DIR = $(INCLUDE_DIR)MLX42/
-SRC_DIR = src/
+BFL_DIR = ../include/BFL/
+MLX42_DIR = ../include/MLX42/
+SRC_DIR = ./src/
 PARSER_DIR = $(SRC_DIR)parser/
 TEXTURE_DIR = $(SRC_DIR)texture/
 UTILS_DIR = $(SRC_DIR)utils/
@@ -81,22 +81,23 @@ BIN_DIR = bin/
 DEBUG_DIR = src/debug/
 
 # <-- Files --> #
-SRC_FILES = main.c
-UTILS_FILES = fill_map.c \
-				ft_exit.c \
-				manage_file.c \
-				ft_random.c \
-				movement.c \
-				handler.c \
-				game_logic.c
-PARSER_FILES = parse_line.c \
-				parse_map.c \
-				parse_name.c
-TEXTURE_FILES = get_texture_path.c \
-				open_textures.c \
-				load_textures.c \
-				draw_textures.c \
-				reload_textures.c
+SRC_FILES = main_bonus.c
+UTILS_FILES = fill_map_bonus.c \
+				ft_exit_bonus.c \
+				manage_file_bonus.c \
+				ft_random_bonus.c \
+				movement_bonus.c \
+				handler_bonus.c \
+				game_logic_bonus.c
+PARSER_FILES = parse_line_bonus.c \
+				parse_map_bonus.c \
+				parse_name_bonus.c
+TEXTURE_FILES = get_texture_path_bonus.c \
+				open_textures_bonus.c \
+				load_textures_bonus.c \
+				load_textures_2_bonus.c \
+				draw_textures_bonus.c \
+				reload_textures_bonus.c
 
 # <-- Directories + Files --> #
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -192,14 +193,11 @@ debug:
 
 # <-- Tags --> #
 tags:
-	@$(shell find . -path ./bonus_part -prune -o -print -type f \( -name "*c" -o -name "*.h" \) > temp)
+	@$(shell find .. -path ../src -prune -o -print -type f \( -name "*c" -o -name "*.h" \) > temp)
 	@ctags -F $(shell cat temp)
 	@$(RM) temp
 
-bonus:
-	@make -s -C bonus_part
-
 # <-- Targets Declaration --> #
-.PHONY = all bonus clean debug fclean re tags
+.PHONY = all clean debug fclean re tags
 
 # ========================================================================== #
