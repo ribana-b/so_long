@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:09:05 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 00:56:01 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 02:58:38 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ static void	handle_movement(t_info *info, const char *message)
 	else if (ft_strncmp(message, "right", 4) == 0 && can_move_right(info))
 		++info->player.y;
 	if (info->map.map[info->player.x][info->player.y] == ENEMY)
-		ft_exit(info, PLAYER_KILLED);
+	{
+		ft_fprintf(STDOUT, INFO_LOG"Player died :c\n");
+		handle_close_window(info->mlx);
+	}
 	else if (info->map.map[info->player.x][info->player.y] == COLLECTIBLE)
 		handle_collection(info);
 }

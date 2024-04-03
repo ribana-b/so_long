@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 22:23:11 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/03 01:34:13 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 02:50:34 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,11 @@ static void	handle_error_2(t_info *info, int status)
  every collectible and exit successfully\n");
 	else if (status == INVALID_TEXTURE)
 		ft_fprintf(STDERR, "Invalid texture, I can't open it\n");
-	else if (status == PLAYER_KILLED)
-		ft_fprintf(STDERR, INFO_LOG"Player died :(\n");
 }
 
 static void	handle_error(t_info *info, int status)
 {
-	if (status != PLAYER_KILLED)
-		ft_fprintf(STDERR, ERROR_LOG);
+	ft_fprintf(STDERR, ERROR_LOG);
 	if (status == KO)
 		ft_fprintf(STDERR, "Running the program\n");
 	else if (status == RIP_MALLOC)

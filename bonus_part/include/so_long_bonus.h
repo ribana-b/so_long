@@ -69,7 +69,6 @@ enum e_exit_status_2
 	INVALID_NOT_CLOSED,
 	INVALID_PLAYER_AMOUNT,
 	INVALID_COLLECTIBLE_AMOUNT,
-	PLAYER_KILLED,
 	INVALID_EXIT_AMOUNT,
 };
 
@@ -225,6 +224,5 @@ void			reload_exit_map(t_info *info);
 void			reload_textures(t_info *info);
 void			get_texture_path(t_info *info, char *map_name);
 void			open_textures(t_info *info);
-void			handle_collision(t_info *info);
 
 #endif // SO_LONG_BONUS_H
