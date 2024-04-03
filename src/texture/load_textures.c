@@ -6,7 +6,7 @@
 /*   By: ribana-b <ribana-b@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 05:21:21 by ribana-b          #+#    #+# Malaga      */
-/*   Updated: 2024/04/02 13:01:14 by ribana-b         ###   ########.com      */
+/*   Updated: 2024/04/03 02:12:22 by ribana-b         ###   ########.com      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	load_floor(t_info *info)
 		info->sprite.texture = mlx_load_png(info->path.floor[color]);
 		info->sprite.floor[color] = mlx_texture_to_image(info->mlx,
 				info->sprite.texture);
+		mlx_delete_texture(info->sprite.texture);
 	}
 }
 
